@@ -8,21 +8,19 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <!----------------------------評価---------------------------->
-    <!--form-group:余白などの見た目を整えてくれる-->
-  <div class="form-group" id="star">
-    <%= f.label :rate, 'Rate', class: 'col-form-label' %>
-    <%= f.hidden_field :rate, id: :review_star %>
+  <div id="star-rate-<%= book.id %>">
+    <%= f.label :rate, 'Rate' %>
   </div>
-  <!--評価javascript-->
   <script>
-    $('#star').raty({
-      size: 36,
-      starOff: '<%= asset_path('star-off.png') %>',
-      starOn: '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'book[rate]',
-      half: true,
-    })
+  $('#star-rate-<%= book.id %>').raty({
+    size: 36,
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= book.rate %>,
+  })
   </script>
   <!----------------------------ここまで---------------------------->
   <div class="form-group">
