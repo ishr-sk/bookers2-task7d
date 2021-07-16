@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all
+    @books = Book.all.
   end
 
   def create
@@ -58,6 +58,10 @@ class BooksController < ApplicationController
     unless @book.user == current_user
       redirect_to books_path
     end
+  end
+  
+  def sort_params
+    params.permit(:sort)
   end
 
 end
